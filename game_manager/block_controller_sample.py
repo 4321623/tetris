@@ -7,7 +7,7 @@ import copy
 
 class Block_Controller(object):
 
-    # init parameter
+    # init parameter 初期値
     board_backboard = 0
     board_data_width = 0
     board_data_height = 0
@@ -21,7 +21,7 @@ class Block_Controller(object):
     #    GameStatus : block/field/judge/debug information. 
     #                 in detail see the internal GameStatus data.
     # output
-    #    nextMove : nextMove structure which includes next shape position and the other.
+    #    nextMove : nextMove structure which includes next shape position and the other. nextmoveは次のブロックの形を含んでいる
     def GetNextMove(self, nextMove, GameStatus):
 
         t1 = datetime.now()
@@ -39,10 +39,10 @@ class Block_Controller(object):
         self.NextShape_class = GameStatus["block_info"]["nextShape"]["class"]
         # current board info
         self.board_backboard = GameStatus["field_info"]["backboard"]
-        # default board definition
-        self.board_data_width = GameStatus["field_info"]["width"]
-        self.board_data_height = GameStatus["field_info"]["height"]
-        self.ShapeNone_index = GameStatus["debug_info"]["shape_info"]["shapeNone"]["index"]
+        # default board definition ボードのデフォルト定義
+        self.board_data_width = GameStatus["field_info"]["width"] #横方向の定義
+        self.board_data_height = GameStatus["field_info"]["height"]  #縦方向の定義
+        self.ShapeNone_index = GameStatus["debug_info"]["shape_info"]["shapeNone"]["index"] #ShapeNone_index=0の可能性あり
 
         # search best nextMove -->
         strategy = None
@@ -84,7 +84,7 @@ class Block_Controller(object):
 
     def getSearchXRange(self, Shape_class, direction):
         #
-        # get x range from shape direction.
+        # get x range from shape direction. x方向へ動ける大きさを計算している
         #
         minX, maxX, _, _ = Shape_class.getBoundingOffsets(direction) # get shape x offsets[minX,maxX] as relative value.
         xMin = -1 * minX
@@ -144,55 +144,55 @@ class Block_Controller(object):
         width = self.board_data_width
         height = self.board_data_height
 
-        # evaluation paramters
-        ## lines to be removed
+        # evaluation paramters この辺は初期値
+        ## lines to be removed ラインがそろった数
         fullLines = 0
-        ## number of holes or blocks in the line.
+        ## number of holes or blocks in the line. 穴のかずと出っ張っているブロックの数
         nHoles, nIsolatedBlocks = 0, 0
-        ## absolute differencial value of MaxY
+        ## absolute differencial value of MaxY 最大yの差分？
         absDy = 0
-        ## how blocks are accumlated
+        ## how blocks are accumlated ブロックがどれくらい詰みあがっているのか計算する
         BlockMaxY = [0] * width
         holeCandidates = [0] * width
         holeConfirm = [0] * width
 
         ### check board
         # each y line
-        for y in range(height - 1, 0, -1):
+        for y in range(height - 1, 0, -1): #y方向下から順に繰り返す
             hasHole = False
             hasBlock = False
             # each x line
-            for x in range(width):
+            for x in range(width): #x方向(横幅方向)に繰り返す
                 ## check if hole or block..
-                if board[y * self.board_data_width + x] == self.ShapeNone_index:
+                if board[y * self.board_data_width + x] == self.ShapeNone_index: #y*self.board_data_widthがボードの中の座標を表してる self.ShapeNone_indexは0の可能性が高い
                     # hole
-                    hasHole = True
-                    holeCandidates[x] += 1  # just candidates in each column..
+                    hasHole = True #ブロックがないことをtrueする
+                    holeCandidates[x] += 1  # just candidates in each column.. ブロックがないことを確認した場合カウントを+1する (穴の連続数のカウント)
                 else:
                     # block
-                    hasBlock = True
-                    BlockMaxY[x] = height - y                # update blockMaxY
+                    hasBlock = True #ブロックがあることをtrueする
+                    BlockMaxY[x] = height - y                # update blockMaxY ブロックが占める最大高さを更新する
                     if holeCandidates[x] > 0:
-                        holeConfirm[x] += holeCandidates[x]  # update number of holes in target column..
-                        holeCandidates[x] = 0                # reset
+                        holeConfirm[x] += holeCandidates[x]  # update number of holes in target column.. #穴の数をカウントする箱にブロックがないことを確認した数を代入する
+                        holeCandidates[x] = 0                # reset #ブロックがないことを確認した数を0にリセットする
                     if holeConfirm[x] > 0:
-                        nIsolatedBlocks += 1                 # update number of isolated blocks
+                        nIsolatedBlocks += 1                 # update number of isolated blocks 出っ張りを確認する
 
             if hasBlock == True and hasHole == False:
-                # filled with block
+                # filled with block ブロックが存在する、かつ、穴がないので1列ブロックがそろった
                 fullLines += 1
             elif hasBlock == True and hasHole == True:
-                # do nothing
+                # do nothing ブロックも存在し、かつ、穴も存在するので特に何もしない
                 pass
             elif hasBlock == False:
-                # no block line (and ofcourse no hole)
+                # no block line (and ofcourse no hole) ブロックが存在しないので特に何もしない
                 pass
 
-        # nHoles
+        # nHoles 穴の数をxに代入して足し合わせる
         for x in holeConfirm:
             nHoles += abs(x)
 
-        ### absolute differencial value of MaxY
+        ### absolute differencial value of MaxY 
         BlockMaxDy = []
         for i in range(len(BlockMaxY) - 1):
             val = BlockMaxY[i] - BlockMaxY[i+1]
