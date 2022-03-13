@@ -28,7 +28,7 @@ class Block_Controller(object):
 
         # print GameStatus
         print("=================================================>")
-        pprint.pprint(GameStatus, width = 61, compact = True)
+        pprint.pprint(GameStatus, width = 61, compact = True) #pprint.pprintを用いることによりGameStatusを整理して見やすくしている
 
         # get data from GameStatus
         # current shape info
