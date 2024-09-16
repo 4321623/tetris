@@ -83,7 +83,7 @@ class Block_Controller(object):
 #        ICHI = 0
 
 
-        kekka = np.array([[0]*4 for i in range(width)])
+        kekka = [[0]*4 for i in range(width)]
 
         for x in range (0,width):
             
@@ -99,22 +99,22 @@ class Block_Controller(object):
                     HyoukaVAL = 2 
                     ICHI = x 
                     Kaiten =0
-                if x > 1 and x < 9:
+                if 2 <= xx and xx <= 8:
                     if A[xx]==A[xx-2] and A[xx]==A[xx-1] and A[xx]==A[xx+1] :
                         HyoukaVAL = 6 
                         ICHI = x 
                         Kaiten =1
-                if x > 1 and x < 9:
+                if 2 <= xx and xx <= 8:
                     if A[xx]==A[xx-2] and A[xx]==A[xx-1] and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 7 
                         ICHI = x 
                         Kaiten = 1
-                if x > 1 and x < 9:
+                if 2 <= xx and xx <= 8:
                     if A[xx]==A[xx-3]+1 and A[xx]==A[xx-2] and A[xx]==A[xx-1] and A[xx]==A[xx+1] :
                         HyoukaVAL = 8
                         ICHI = x 
                         Kaiten = 1
-                if x > 1 and x < 9:
+                if 2 <= xx and xx <= 8:
                     if A[xx]==A[xx-3]+1 and A[xx]==A[xx-2] and A[xx]==A[xx-1] and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 9
                         ICHI = x 
@@ -179,206 +179,190 @@ class Block_Controller(object):
                     HyoukaVAL = 24 
                     ICHI = x 
                     Kaiten = 0
-
-                if A[xx] > A[xx+1]+3 and A[xx]==A[xx]+A[xx-1]:
-                    HyoukaVAL = 25
-                    ICHI = x
-                    Kaiten = 0
-
-                if A[xx] > A[xx-1]+3 and A[xx]==A[xx]+A[xx+1]:
-                    HyoukaVAL = 26
-                    ICHI = x
-                    Kaiten = 0
-
-                if A[xx] > A[xx-1]+3 and A[xx] > A[xx+1]+3:
-                    HyoukaVAL = 27
-                    ICHI = x
-                    Kaiten = 0
-
                 
             elif current_index == 2: #ShapeL
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx+1] :
                         HyoukaVAL = 14 
                         ICHI = x 
                         Kaiten = 0
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1] and A[xx]==A[xx+1] :
                         HyoukaVAL = 15 
                         ICHI = x 
                         Kaiten = 3
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1]+1 and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 16 
                         ICHI = x 
                         Kaiten = 0
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1]+3 and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 17 
                         ICHI = x 
                         Kaiten = 0
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1] and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 18 
                         ICHI = x 
                         Kaiten = 3
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1] and A[xx]==A[xx+1] and A[xx]==A[xx+2]+2 :
                         HyoukaVAL = 19 
                         ICHI = x 
                         Kaiten = 3
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1]-1 and A[xx]==A[xx+1] :
                         HyoukaVAL = 20 
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1]-1 and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 21 
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1]-1 and A[xx]==A[xx+1] :
                         HyoukaVAL = 22
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1]-1 and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 23 
                         ICHI = x 
                         Kaiten = 1
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1]+2 :
                         HyoukaVAL = 24 
                         ICHI = x
                         Kaiten = 2
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1]+2 and A[xx]==A[xx+1]+3 :
                         HyoukaVAL = 25 
                         ICHI = x 
                         Kaiten = 2
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-2]+3 and A[xx]==A[xx-1]+2 :
                         HyoukaVAL = 26 
                         ICHI = x 
                         Kaiten = 2
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-2]+3 and A[xx]==A[xx-1]+2 and A[xx]==A[xx+1]+3 :
                         HyoukaVAL = 27 
                         ICHI = x 
                         Kaiten = 2                
 
             elif current_index == 3: #ShapeJ
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1]:
                         HyoukaVAL = 14 
                         ICHI = x 
                         Kaiten = 0
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1] and A[xx]==A[xx+1]:
                         HyoukaVAL = 15 
                         ICHI = x 
                         Kaiten = 1
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1] and A[xx]==A[xx+1]+1:
                         HyoukaVAL = 16 
                         ICHI = x 
                         Kaiten = 0
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1] and A[xx]==A[xx+1]+3:
                         HyoukaVAL = 17 
                         ICHI = x 
                         Kaiten = 0
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1] and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 18 
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+2 and A[xx]==A[xx-1] and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 19
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1] and A[xx]==A[xx+1]-1 :
                         HyoukaVAL = 20 
                         ICHI = x 
                         Kaiten = 3
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1] and A[xx]==A[xx+1]-1 and A[xx]==A[xx+2]-1 :
                         HyoukaVAL = 21
                         ICHI = x 
                         Kaiten = 3
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1] and A[xx]==A[xx+1]-1 :
                         HyoukaVAL = 22 
                         ICHI = x 
                         Kaiten = 3
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1] and A[xx]==A[xx+1]-1 and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 23
                         ICHI = x
                         Kaiten = 3
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx+1]+2 :
                         HyoukaVAL = 24
                         ICHI = x 
                         Kaiten = 2
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx+1]+2 and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 25 
                         ICHI = x 
                         Kaiten = 2
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1]+3 and A[xx]==A[xx+1]+2 :
                         HyoukaVAL = 26
                         ICHI = x 
                         Kaiten = 2
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1]+3 and A[xx]==A[xx+1]+2 and A[xx]==A[xx+2]+1 :
                         HyoukaVAL = 27 
                         ICHI = x 
                         Kaiten = 2                
 
             elif current_index == 4: #ShapeT
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1] and A[xx]==A[xx+1] :
                         HyoukaVAL = 14 
                         ICHI = x 
                         Kaiten = 3
-                if x > 0 :
+                if 1 <= xx :
                     if A[xx]==A[xx-1]+1 :
                         HyoukaVAL = 15 
                         ICHI = x 
                         Kaiten = 2
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx+1]+1 :
                         HyoukaVAL = 16
                         ICHI = x 
                         Kaiten = 0
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1]+1 and A[xx]==A[xx+1]+1 :
                         HyoukaVAL = 17
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1]+1 and A[xx]==A[xx+1]+1 and A[xx]==A[xx+2]+2 :
                         HyoukaVAL = 18 
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+2 and A[xx]==A[xx-1]+1 and A[xx]==A[xx+1]+1 :
                         HyoukaVAL = 19 
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+2 and A[xx]==A[xx-1]+1 and A[xx]==A[xx+1]+1 and A[xx]==A[xx+2]+2 :
                         HyoukaVAL = 20 
                         ICHI = x 
                         Kaiten = 1                
 
             elif current_index == 5: #ShapeO
-                if x < 9 :
+                if xx <= 8 :
                     if A[xx]==A[xx+1]:
                         HyoukaVAL = 14
                         ICHI = x 
@@ -405,87 +389,83 @@ class Block_Controller(object):
                         Kaiten = 0
 
             elif current_index == 6: #ShapeS
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx+1]-1:
-                        HyoukaVAL = 24 
+                        HyoukaVAL = 14 
                         ICHI = x 
                         Kaiten = 1
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1] and A[xx]==A[xx+1]-1 and A[xx]==A[xx+2]:
-                        HyoukaVAL = 25 
+                        HyoukaVAL = 15 
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1] and A[xx]==A[xx+1]+1:
-                        HyoukaVAL = 26 
+                        HyoukaVAL = 16 
                         ICHI = x 
                         Kaiten = 0
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1]+2 and A[xx]==A[xx+1]-1 and A[xx]==A[xx+2]:
-                        HyoukaVAL = 27 
+                        HyoukaVAL = 17 
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1] and A[xx]==A[xx+1]+1 and A[xx]==A[xx+2]+2:
-                        HyoukaVAL = 28 
+                        HyoukaVAL = 18 
                         ICHI = x
                         Kaiten = 0
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1] and A[xx]==A[xx+1]+1 and A[xx]==A[xx+2]+1:
-                        HyoukaVAL = 29 
+                        HyoukaVAL = 19 
                         ICHI = x 
                         Kaiten = 0
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1] and A[xx]==A[xx+1]+1 and A[xx]==A[xx+2]+2:
-                        HyoukaVAL = 30
+                        HyoukaVAL = 20
                         ICHI = x
-                        Kaiten = 0
-                if HyoukaVAL == 0:
-                    Kaiten = 1
+                        Kaiten = 0           
 
             elif current_index == 7: #ShapeZ
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx+1]+1:
-                        HyoukaVAL = 24 
+                        HyoukaVAL = 14 
                         ICHI = x 
                         Kaiten = 1
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1]+1 and A[xx]==A[xx+1]+1 and A[xx]==A[xx+2]+1:
-                        HyoukaVAL= 25 
+                        HyoukaVAL= 15 
                         ICHI= x 
                         Kaiten= 1
-                if x < 9:
+                if xx <= 8:
                     if A[xx]==A[xx-1]+1 and A[xx]==A[xx+1]+1 and A[xx]==A[xx+2]+2 :
-                        HyoukaVAL = 26 
+                        HyoukaVAL = 16 
                         ICHI = x 
                         Kaiten = 1
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-1]+1 and A[xx]==A[xx+1] :
-                        HyoukaVAL = 27 
+                        HyoukaVAL = 17 
                         ICHI = x 
                         Kaiten = 0
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+2 and A[xx]==A[xx-1]+1 and A[xx]==A[xx+1] :
-                        HyoukaVAL = 28 
+                        HyoukaVAL = 18 
                         ICHI = x 
                         Kaiten = 0
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+1 and A[xx]==A[xx-1]+1 and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
-                        HyoukaVAL = 29
+                        HyoukaVAL = 19
                         ICHI = x 
                         Kaiten = 0
-                if x > 0 and x < 9:
+                if 1 <= xx and xx <= 8:
                     if A[xx]==A[xx-2]+2 and A[xx]==A[xx-1]+1 and A[xx]==A[xx+1] and A[xx]==A[xx+2]+1 :
-                        HyoukaVAL = 30 
+                        HyoukaVAL = 20 
                         ICHI = x 
                         Kaiten = 0
-                if x < 9:
+                if xx <= 8:
                     if A[xx] > A[xx-1]+1 and A[xx]==A[xx+1]+1 and A[xx]==A[xx+2]+2 :
-                        HyoukaVAL = 31 
+                        HyoukaVAL = 21 
                         ICHI = x 
                         Kaiten = 1
-                if HyoukaVAL == 0:
-                    Kaiten = 1
 
             
 #            kekka[x][0] = ICHI
@@ -500,64 +480,22 @@ class Block_Controller(object):
             Kaiten = 0
 
 #            pprint.pprint(kekka)
-#       index S , index Zのみ場合分け
-        if self.CurrentShape_index == 6 or self.CurrentShape_index ==7:
 
-            HyoukaVAL_0 = 0
+        # 評価値最大探索
+        max_value = np.amax(kekka)
+        print("max_value=",max_value)
 
-            for x in range (0, width):
-                if kekka[x][1] == 0:
-                    HyoukaVAL_0 = HyoukaVAL_0 + 1
+        for i in kekka:
+            print(i, max_value in i)
+            if max_value in i:
+                result = True
+                break
+        result
+        print(i)
+        print(i[0],i[3])
 
-            if HyoukaVAL_0 == 10: #3番目のHyoukaVALのxを探索
-                third_value = np.partition(kekka.flatten(),-3)[-3]
-                print("third_value", third_value)
-
-                for i in kekka:
-                    print(i, third_value in i)
-                    if third_value in i:
-                        result = True
-                        break
-                result
-                print(i)
-                print(i[0],i[3])
-
-                kekka_x = i[0]
-                kekka_Kaiten = i[3]
-
-
-            else:   # 評価値最大探索
-                max_value = np.amax(kekka)
-                print("max_value=",max_value)
-
-                for i in kekka:
-                    print(i, max_value in i)
-                    if max_value in i:
-                        result = True
-                        break
-                result
-                print(i)
-                print(i[0],i[3])
-
-                kekka_x = i[0]
-                kekka_Kaiten = i[3]
-
-        else:
-            max_value = np.amax(kekka)
-            print("max_value=",max_value)
-
-            for i in kekka:
-                print(i, max_value in i)
-                if max_value in i:
-                    result = True
-                    break
-            result
-            print(i)
-            print(i[0],i[3])
-
-            kekka_x = i[0]
-            kekka_Kaiten = i[3]
-
+        kekka_x = i[0]
+        kekka_Kaiten = i[3]
         
         # search best nextMove -->
         nextMove["strategy"]["direction"] = kekka_Kaiten
